@@ -1,4 +1,6 @@
 import os
+import sys
+import traceback
 import discord, datetime, time
 import asyncio
 import discord.ext
@@ -7,53 +9,48 @@ import urllib.parse, urllib.request, re
 from server import keep_alive
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions, CheckFailure, check
+import colorama
+from colorama import Fore
 import json
 
 client = discord.Client()
 # test
 
+intents = discord.Intents.all()
 client = commands.AutoShardedBot(
     command_prefix=commands.when_mentioned_or("b!", "B!"),
     help_command=None,
     shard_count=2,
+    intents=intents,
 )
 
-owner = {697323031919591454}
+owner = [697323031919591454]
 
-manager = {683555221904818194}
+manager = [683555221904818194]
 
-developer = {758290177919156244, 718868589364379699}
+developer = [758290177919156244, 718868589364379699]
 
-helper = {885681891863298069, 825633843096322108}
+helper = [885681891863298069, 825633843096322108]
 
 start_time = time.time()
 
 
 @client.event
 async def on_ready():
-    print("Connected to bot: {}".format(client.user.name))
-    print("Bot ID: {}".format(client.user.id))
-    data = read_json("blacklist.json")
+    print(Fore.LIGHTGREEN_EX + "Connected to bot: {}".format(client.user.name))
+    print(Fore.LIGHTGREEN_EX + "Bot ID: {}".format(client.user.id))
+    presence.start(client)
+    data = read_json(".blacklist.json")
     client.blacklisted = data["blusers"]
-    data = read_json("banitems.json")
+    data = read_json(".banitems.json")
     client.items = data["banitems"]
-
-    servers = len(client.guilds)
-    members = len(client.users)
-
-    await client.change_presence(
-        activity=discord.Activity(
-            type=discord.ActivityType.watching,
-            name=f" {members} members in {servers} servers.",
-        )
-    )
 
 
 @tasks.loop(seconds=10.0)
 async def presence(client):
-  servers = len(client.guilds)
-  members = len(slient.users)
-  await client.change_presence(
+    servers = len(client.guilds)
+    members = len(client.users)
+    await client.change_presence(
         activity=discord.Activity(
             type=discord.ActivityType.watching,
             name=f" {members} members in {servers} servers.",
@@ -79,12 +76,18 @@ async def ch_pr():
         await asyncio.sleep(5)
 
 
-client.loop.create_task(ch_pr())
+# client.loop.create_task(ch_pr())
 
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py"):
-        client.load_extension(f"cogs.{filename[:-3]}")
+        try:
+            client.load_extension(f"cogs.{filename[:-3]}")
+        except Exception as e:
+            exception = "\n".join(
+                traceback.format_exception(type(e), e, e.__traceback__)
+            )
+            print(Fore.RED + exception)
 print("All Cogs Loaded! 👍")
 
 
@@ -93,7 +96,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         e = discord.Embed(
             title="Internal Error!!",
-            value="The command you entered was not a valid command, check b!help for a list of commands!",
+            description="The command you entered was not a valid command, check b!help for a list of commands!",
         )
         e.add_field(name="Error Value :", value=f"```python3\n{error}```")
         await ctx.send(embed=e)
@@ -526,7 +529,7 @@ async def reset_cooldown_all(ctx):
         await ctx.send("Sorry only my owner can use this!")
 
 
-token = os.environ["TOKEN"]
+# token = os.environ["TOKEN"]
 
 keep_alive()
-client.run(token)
+client.run("ODkxMzIzMjAzMTM2NDE3ODIy.YU8raw.pSxW6FnGUuu-cXswyVge5bbdBjw")
