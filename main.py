@@ -12,7 +12,7 @@ import json
 client = discord.Client()
 # test
 
-client = commands.Bot(command_prefix = commands.when_mentioned_or("b!","B!"),help_command=None)
+client = commands.AutoShardedBot(command_prefix = commands.when_mentioned_or("b!","B!"),help_command=None)
 
 owner = {697323031919591454}
 
