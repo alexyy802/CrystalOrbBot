@@ -10,6 +10,7 @@ from discord.ext.commands import has_permissions, CheckFailure, check
 import json
 
 client = discord.Client()
+# test
 
 client = commands.Bot(command_prefix = commands.when_mentioned_or("b!","B!"),help_command=None)
 
