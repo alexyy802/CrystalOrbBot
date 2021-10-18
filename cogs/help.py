@@ -31,5 +31,21 @@ class Help(commands.Cog):
     embed.set_footer(text=f"Requested By {ctx.author}",icon_url="https://ctl.s6img.com/society6/img/UzBlOKW_TEifrUOrlc043un9ehg/w_700/prints/~artwork/s6-0054/a/23111039_13741984/~~/cute-booze-beer-prints.jpg")
     await ctx.send(embed=embed)
 
+  @commands.command()
+  async def server(self,ctx):
+      e = discord.Embed(title="")
+      e.add_field(name="Invite me!",value="[Click me!](https://discord.com/api/oauth2/authorize?client_id=859713560774574101&permissions=139586817024&scope=bot%20applications.commands)",inline=False)
+      e.add_field(name="Website",value="[Click me!](https://BarBot.alexydacoder.repl.co)",inline=False)
+      e.add_field(name="Support Server",value="[Click me!](https://discord.gg/K2QND4VMVz)",inline=False)
+      await ctx.send(embed=e)
+
+  @commands.command()
+  async def invite(self,ctx):
+      e = discord.Embed(title="")
+      e.add_field(name="Invite me!",value="[Click me!](https://discord.com/api/oauth2/authorize?client_id=859713560774574101&permissions=139586817024&scope=bot%20applications.commands)",inline=False)
+      e.add_field(name="Website",value="[Click me!](https://BarBot.alexydacoder.repl.co)",inline=False)
+      e.add_field(name="Support Server",value="[Click me!](https://discord.gg/K2QND4VMVz)",inline=False)
+      await ctx.send(embed=e)
+
 def setup(client):
   client.add_cog(Help(client))
