@@ -30,8 +30,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: ENV Stuff
       env:
-          QA_ENV_FILE: ${{ secrets.QA_ENV_FILE }}
-          PROD_ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
+          TOKEN: ${{ secrets.API_KEY }}
       run: |
           [ "TOKEN" = token ] && python3 main.py
     
