@@ -32,7 +32,7 @@ jobs:
       run: |
         - shell: cmd
             env:
-              SUPER_SECRET: ${{ secrets.SuperSecret }}
+              API_KEY: ${{ secrets.API_KEY }}
             run: |
-              example-command "%SUPER_SECRET%"
+              python3 main.py "%API_KEY%"
     
