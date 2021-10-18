@@ -21,7 +21,7 @@ Barbot is a discord bot made from discord.py and python, barbot is most to fun a
 
 - Servers : 100
 
-- Members : 7034
+- Members : 9248
 
 - Prefix : `b!` 
 
