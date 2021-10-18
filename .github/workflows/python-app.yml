@@ -31,8 +31,8 @@ jobs:
     - name: Bruh ENV Sucks
       run: |
         - shell: cmd
-        env:
-          SUPER_SECRET: ${{ secrets.SuperSecret }}
-        run: |
-          example-command "%SUPER_SECRET%"
+            env:
+              SUPER_SECRET: ${{ secrets.SuperSecret }}
+            run: |
+              example-command "%SUPER_SECRET%"
     
