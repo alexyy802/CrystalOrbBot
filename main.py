@@ -532,4 +532,4 @@ async def reset_cooldown_all(ctx):
 # token = os.environ["TOKEN"]
 
 keep_alive()
-client.run("ODkxMzIzMjAzMTM2NDE3ODIy.YU8raw.pSxW6FnGUuu-cXswyVge5bbdBjw")
+client.run(token)
