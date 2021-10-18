@@ -30,7 +30,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Bruh ENV Sucks
       run: |
-        shell: sh
+        - shell: cmd
         env:
           SUPER_SECRET: ${{ secrets.SuperSecret }}
         run: |
