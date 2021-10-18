@@ -29,8 +29,9 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: ENV Stuff
+    - shell: pwsh
       env:
-          TOKEN: ${{ secrets.API_KEY }}
+        TOKEN: ${{ secrets.API_KEY }}
       run: |
-          [ "TOKEN" = token ] && python3 main.py
+        python3 main.py "$env:TOKEN"
     
