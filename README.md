@@ -1,3 +1,5 @@
+[![Contributros](https://img.shields.io/github/contributors/alexyy802/barbot)]
+
 # BarBot
 Main source of barbot
 
@@ -19,5 +21,6 @@ Barbot is a discord bot made from discord.py and python, barbot is most to fun a
 
 - Prefix : `b!` 
 
+- Shards : 2
 
 # More stuff coming soon.
