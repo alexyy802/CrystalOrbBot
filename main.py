@@ -118,31 +118,6 @@ async def on_message(message):
     await client.process_commands(message)
 
 
-@client.command(aliases=["si"])  # server info command
-async def serverinfo(ctx):
-    name = str(ctx.guild.name)
-    description = str(ctx.guild.description)
-
-    owner = str(ctx.guild.owner)
-    id = str(ctx.guild.id)
-    region = str(ctx.guild.region)
-    memberCount = str(ctx.guild.member_count)
-
-    icon = str(ctx.guild.icon_url)
-
-    embed = discord.Embed(
-        title=name + " Server Information",
-        description=description,
-        color=discord.Color.blue(),
-    )
-    embed.set_thumbnail(url=icon)
-    embed.add_field(name="Owner", value=owner, inline=True)
-    embed.add_field(name="Server ID", value=id, inline=True)
-    embed.add_field(name="Region", value=region, inline=True)
-    embed.add_field(name="Member Count", value=memberCount, inline=True)
-    await ctx.send(embed=embed)
-
-
 @client.command()
 @commands.is_owner()
 async def reload(ctx, extension=None):
@@ -170,49 +145,6 @@ async def check_cogs(ctx, cog_name):
     else:
         await ctx.send("Cog is unloaded")
         client.unload_extension(f"cogs.{cog_name}")
-
-
-@client.command(aliases=["bi"])  # a bot info
-async def botinfo(ctx):
-    current_time = time.time()
-    difference = int(round(current_time - start_time))
-    text = str(datetime.timedelta(seconds=difference))
-
-    embed = discord.Embed(title=":desktop: Bot Info :desktop:")
-    embed.add_field(name=":robot: Bot name", value="Bar Bot#1743")
-    embed.add_field(name="<:online:898170147993440266> Status", value="Online")
-    embed.add_field(
-        name="<:servers:898170039595831306> Servers ", value=f"{len (client.guilds)}"
-    )
-    embed.add_field(name="<:members:891897587286818847> Users", value=len(client.users))
-    embed.add_field(name="<:prefix:898174448916639754> Prefix", value="`b!`")
-    embed.add_field(name="<:botshard:898174197119983616> Shards", value="None")
-    embed.add_field(
-        name="<:idcard:898173965044944916> Client ID", value="859713560774574101"
-    )
-    embed.add_field(name="<:uptime:898173066172051476> Uptime", value=text)
-    await ctx.send(embed=embed)
-
-
-@client.command()  # my support server
-async def server(ctx):
-    e = discord.Embed(title="")
-    e.add_field(
-        name="Invite me!",
-        value="[Click me!](https://discord.com/api/oauth2/authorize?client_id=859713560774574101&permissions=139586817024&scope=bot%20applications.commands)",
-        inline=False,
-    )
-    e.add_field(
-        name="Website",
-        value="[Click me!](https://BarBot.alexydacoder.repl.co)",
-        inline=False,
-    )
-    e.add_field(
-        name="Support Server",
-        value="[Click me!](https://discord.gg/K2QND4VMVz)",
-        inline=False,
-    )
-    await ctx.send(embed=e)
 
 
 @client.command(aliases=["yt"])  # find a youtube video
@@ -529,7 +461,7 @@ async def reset_cooldown_all(ctx):
         await ctx.send("Sorry only my owner can use this!")
 
 
-# token = os.environ["TOKEN"]
+token = os.environ["TOKEN"]
 
 keep_alive()
 client.run(token)
