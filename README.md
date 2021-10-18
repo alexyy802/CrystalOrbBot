@@ -1,4 +1,3 @@
-[![contributros](https://img.shields.io/github/contributors/alexyy802/barbot)]
 
 # BarBot
 Main source of barbot
