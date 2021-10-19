@@ -29,4 +29,5 @@ Barbot is a discord bot made from discord.py and python, barbot is most to fun a
 # NOTICE
 People like to copy code from projects, and if ur seeing this that means you can NOT copy code from this github repo without giving the developers credit.(Or else i will find where you live and eat your cookies and sue u :D)
 
-# More stuff coming soon.
+# The End
+The bot was denied into verification therefore, the repo will be archived thank you for the great 2-3 months :D
