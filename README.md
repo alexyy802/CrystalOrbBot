@@ -18,3 +18,9 @@ Crystal Orb is a discord bot made from discord.py and python, Crystal Orb is for
 
 # NOTICE
 People like to copy code from projects, and if ur seeing this that means you can NOT copy code from this github repo without giving the developers credit.(Or else i will find where you live and eat your cookies and sue u :D)
+
+# Developers 
+<p>
+  <img src = "https://avatars.githubusercontent.com/u/88032921?v=2">
+  <img src = "https://avatars.githubusercontent.com/u/82736662?v=2">
+</p>
