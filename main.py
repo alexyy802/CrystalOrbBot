@@ -1,38 +1,69 @@
 import discord
 from discord.ext import commands
 import os
-from discord.ext.commands import CommandNotFound, MissingPermissions
+from server import server
 
-intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='c.',help_command=None)
 
-client = discord.Client(intents=intents)
+bot.lava_nodes = [
+      {
+        'host': 'owo.lonk',
+        'port': pog,
+        'rest_uri': 'http://owo.lonk:10010',
+        'password': 'Nodepassword123lolpog:o',
+        'identifier': 'MAIN MUSIC',
+        'region': 'ea town'
+      }
+    ]
 
-client = commands.Bot(command_prefix="mp!",help_command=None)
+bot.load_extension('dismusic')
 
-@client.event
+@bot.event
 async def on_ready():
-  print('CrystalOrb Bot online.')
+  print('Logged in!')
+  await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="c.help for help! :D"))
 
-for filename in os.listdir("./cogs"):
-    if filename.endswith(".py"):
-      client.load_extension(f"cogs.{filename[:-3]}")
-print("All Cogs Loaded! 👍")
+for filename in os.listdir("./src"):
+  if filename.endswith(".py"):
+    bot.load_extension(f"src.{filename[:-3]}")
+  print("All was loaded! 👍")
 
-@client.event
+
+@bot.event
+async def on_message(message):
+  mention = f"<@!{bot.user.id}>"
+  if message.content == mention:
+    e = discord.Embed(title=f"Hello! my name is {bot.user}! you can use `c.help` for my help command!",colour=discord.Color.blue())
+    await message.channel.send(embed=e)
+  await bot.process_commands(message)
+
+@bot.event
 async def on_command_error(ctx, error):
-  if isinstance(error, MissingPermissions):
-    await ctx.send(f'{ctx.author.mention}, hey you dont have permissions to use this command! <a:nono:900278651906572288>')
+  if isinstance(error, commands.MissingPermissions): 
+    await ctx.send(f'{ctx.author.mention}, hey you dont have permissions to use this command! <:redCross:902465119534080001>', delete_after=5.0)
     return
-  if isinstance(error, CommandNotFound):
-    await ctx.send('I dont seem to know that command <:CONFUSION:900280334787166248>')
+  if isinstance(error, commands.CommandNotFound):
+    await ctx.send('I dont seem to know that command <:CONFUSION:900280334787166248>', delete_after=5.0)
+    await ctx.message.add_reaction("<:LC_QuestionMark:902424772913287208>")
     return
+  raise error
 
-@client.command()
-async def policy(ctx):
-  e=discord.Embed(title=":page_with_curl:**Privacy & Policy**",description="By adding our bot to your server. You agree to have the following data collected, unless an exception was made. The data that is collected may include Guild id and usernames such as user id's. We do not sell any data that is collected.If you do not wish to follow this policy, you are not permitted to use our bot, or any of its services.")
-  e.set_footer(text="By urs truly TheOneWhoLives#4003")
-  await ctx.send(embed=e)
+@bot.command()
+async def support(ctx):
+      e = discord.Embed(colour=discord.Color.blue())
+      e.add_field(name="Invite me!",value="[Click me!](https://discord.com/api/oauth2/authorize?client_id=899838782994546698&permissions=8&scope=bot%20applications.commands)",inline=False)
+      e.add_field(name="Website",value="[Click me!](https://crystalorb.alexydacoder.repl.co)",inline=False)
+      e.add_field(name="Support Server",value="[Click me!](https://discord.gg/K2QND4VMVz)",inline=False)
+      await ctx.send(embed=e)
 
-token = os.environ["TOKEN"]
+@bot.command()
+async def invite(ctx):
+      e = discord.Embed(colour=discord.Color.blue())
+      e.add_field(name="Invite me!",value="[Click me!](https://discord.com/api/oauth2/authorize?client_id=899838782994546698&permissions=8&scope=bot%20applications.commands)",inline=False)
+      e.add_field(name="Website",value="[Click me!](https://crystalorb.alexydacoder.repl.co)",inline=False)
+      e.add_field(name="Support Server",value="[Click me!](https://discord.gg/K2QND4VMVz)",inline=False)
+      await ctx.send(embed=e)
 
-client.run(token)
+token = os.environ['token']
+server()
+bot.run(token)
