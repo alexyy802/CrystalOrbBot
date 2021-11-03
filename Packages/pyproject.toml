@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "CrystalOrb"
+version = "0.1.0"
+description = ""
+authors = ["alexyy802", "VincentRPS", "||Dank Lord||"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Flask = "^2.0.2"
+discord = "^1.7.3"
+dismusic = "^1.0.1"
+pistonapi = "^1.0.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
